@@ -54,7 +54,7 @@ void loop() {
 
     distancemm = 0;
 
-  } else if (mode == 1 && distancemm > 0 && freq > 0) {
+  } else if (mode == 1 && abs(distancemm) > 0 && freq > 0) {
     
     stepper.runToNewPosition(distancemm * microstep * stepsPerRev * 1.0 / mmPerRev);
     digitalWrite(8,HIGH);
@@ -100,15 +100,15 @@ void loop() {
 
         freq = readNumber;
 
-        stepper.setAcceleration(empScale * 1.5 * 16.0 * distancemm * microstep * stepsPerRev * freq * freq * 1.0 / mmPerRev);
-        stepper.setMaxSpeed(empScale * 2.0 * distancemm * microstep * stepsPerRev * freq * 1.0 / mmPerRev);
+        stepper.setAcceleration(empScale * 1.5 * 16.0 * abs(distancemm) * microstep * stepsPerRev * freq * freq * 1.0 / mmPerRev);
+        stepper.setMaxSpeed(empScale * 2.0 * abs(distancemm) * microstep * stepsPerRev * freq * 1.0 / mmPerRev);
 
       } else if (!(strcmp("dist", command))) {
 
         distancemm = readNumber;
         
-        stepper.setAcceleration(empScale * 1.5 * 16.0 * distancemm * microstep * stepsPerRev * freq * freq * 1.0 / mmPerRev);
-        stepper.setMaxSpeed(empScale * 2.0 * distancemm * microstep * stepsPerRev * freq * 1.0 / mmPerRev);
+        stepper.setAcceleration(empScale * 1.5 * 16.0 * abs(distancemm) * microstep * stepsPerRev * freq * freq * 1.0 / mmPerRev);
+        stepper.setMaxSpeed(empScale * 2.0 * abs(distancemm) * microstep * stepsPerRev * freq * 1.0 / mmPerRev);
 
       } else if (!(strcmp("mode",command))) {
         
