@@ -42,7 +42,7 @@ void setup() {
 
 void loop() {
 
-  if (distancemm == 0) {
+  if (distancemm == 0 || freq == 0) {
     delay(200);
   }
   
